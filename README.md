@@ -1,13 +1,114 @@
-Data Structures 2026 - Trade Data AnalysisThis repository contains a collection of C++ programs designed to parse, sort, search, and manage trade records using various algorithmic techniques and data structures. The programs process a specific CSV dataset named effects-of-covid-19-on-trade-at-15-december-2021-provisional.csv (https://www.stats.govt.nz/information-releases/effects-of-covid-19-on-trade-at-15-december-2021-provisional).  
-📁 Repository StructureThe project is divided into two main parts, focusing on fundamental algorithms and advanced data management systems.  
-Part 1: Sorting and Searching AlgorithmsPart 1 consists of four standalone C++ programs that evaluate different algorithmic approaches on identical data copies.  
-Program 1 (Merge Sort vs. Counting Sort):Reads the CSV dataset and safely parses fields, handling commas inside quoted strings.Implements Merge Sort and Counting Sort to organize records based on the cumulative field.  Includes a memory safety check for Counting Sort that falls back to standard sorting if the value range exceeds 100,000,000.  Measures and outputs the execution time in milliseconds for both algorithms.  
-Program 2 (Heap Sort vs. Quick Sort):Extracts the value field from the CSV to use as the primary sorting key.  Implements an in-place Max-Heap Sort algorithm.  Implements Quick Sort using a Hoare-style partition with a middle pivot to prevent worst-case scenarios on already sorted data.  Measures and outputs the execution time in milliseconds for both algorithms.  
-Program 3 (Binary Search vs. Interpolation Search):Converts date strings (DD/MM/YYYY) into a searchable numeric key representing total days since 01/01/2015.  Sorts the dataset by this numeric key and compares the performance of Binary Search with Interpolation Search for a target date.  Outputs the found index, the total number of algorithmic steps taken, and the execution time in nanoseconds.  
-Program 4 (Advanced Interpolation Variations):Implements Binary Interpolation Search (BIS).  Implements a bounded-jump variant known as Binary Interpolation Search Star (BIS*), which limits sequential jumps to a maximum of 3 to avoid worst-case performance drops.  Outputs the found index, total steps, and search time in nanoseconds for comparison.  
-Part 2: Advanced Data Structures (BST & Hash Table)Part 2 is a unified, interactive CLI application that loads CSV rows into memory as Record objects and allows the user to manipulate the data using different underlying structures.  
-AVL Trees (Self-Balancing BSTs):Includes custom left and right rotation logic to maintain tree balance during insertions and deletions.  By Date: Builds the tree ordered by the normalized date. Users can search for a cumulative value, modify it, delete a specific date's record entirely, or display the sorted tree.  By Cumulative: Builds the tree ordered by the cumulative value, allowing multiple dates to share the same tree node using vectors. Users can quickly query the minimum and maximum cumulative values in the dataset.  Hash Table:Implements a Hash Table using separate chaining (linked lists) for collision resolution.  Utilizes a custom hash function that calculates the bucket index by summing the ASCII values of the date string and applying a modulo operation.  Allows users to search, modify, delete, and visually display the contents of all hash buckets.  Interactive Menus:Features a robust command-line interface that loops until the user chooses to exit, preventing crashes by clearing invalid inputs.  🚀 How to RunEnsure you have a C++ compiler installed (e.g., GCC/g++).Place the effects-of-covid-19-on-trade-at-15-december-2021-provisional.csv file in the same root directory as your compiled executables.  
+# Data Structures 2026 – Trade Data Analysis
 
-Compile any of the source files. For example, to compile Part 2:
+This repository contains a collection of C++ programs developed for the analysis of trade data using different sorting algorithms, searching algorithms, and data structures.
+
+The programs process the following CSV dataset:
+
+**Dataset:** `effects-of-covid-19-on-trade-at-15-december-2021-provisional.csv`
+**Source:** [Stats NZ – Effects of COVID-19 on trade at 15 December 2021](https://www.stats.govt.nz/information-releases/effects-of-covid-19-on-trade-at-15-december-2021-provisional)
+
+## 📁 Repository Structure
+
+The project is divided into two main parts.
+
+### Part 1 – Sorting and Searching Algorithms
+
+Part 1 contains four standalone C++ programs that work with the same dataset and compare different algorithms.
+
+#### Program 1 – Merge Sort vs Counting Sort
+
+* Reads and parses the CSV dataset, including fields containing commas inside quoted strings.
+* Sorts records according to the `cumulative` field.
+* Implements **Merge Sort**.
+* Implements **Counting Sort**.
+* Includes a memory-safety check for Counting Sort and falls back to standard sorting when the value range is too large.
+* Measures the execution time of both algorithms in milliseconds.
+
+#### Program 2 – Heap Sort vs Quick Sort
+
+* Extracts the `value` field as the sorting key.
+* Implements an in-place **Max-Heap Sort**.
+* Implements **Quick Sort** using Hoare-style partitioning with a middle-element pivot.
+* Measures the execution time of both algorithms in milliseconds.
+
+#### Program 3 – Binary Search vs Interpolation Search
+
+* Converts dates in `DD/MM/YYYY` format into a numeric key based on the number of days since `01/01/2015`.
+* Sorts the records according to this numeric date key.
+* Implements **Binary Search**.
+* Implements **Interpolation Search**.
+* Searches for a target date.
+* Outputs the found index, number of algorithmic steps, and execution time in nanoseconds.
+
+#### Program 4 – Advanced Interpolation Variations
+
+* Implements **Binary Interpolation Search (BIS)**.
+* Implements **Binary Interpolation Search Star (BIS*)**.
+* BIS* limits sequential jumps to a maximum of 3.
+* Outputs the found index, number of steps, and execution time in nanoseconds.
+
+---
+
+### Part 2 – Advanced Data Structures
+
+Part 2 is an interactive command-line application that loads the CSV records into memory and provides operations using different data structures.
+
+#### AVL Tree – By Date
+
+* Implements an AVL tree ordered by normalized date.
+* Includes left and right rotations to maintain balance.
+* Supports searching for a cumulative value.
+* Supports modifying a cumulative value.
+* Supports deleting a record by date.
+* Can display the records in sorted tree order.
+
+#### AVL Tree – By Cumulative
+
+* Implements an AVL tree ordered by cumulative value.
+* Allows multiple dates with the same cumulative value to be stored in the same tree node using vectors.
+* Supports queries for the minimum and maximum cumulative values.
+
+#### Hash Table
+
+* Implements a hash table using **separate chaining** for collision handling.
+* Uses a custom hash function based on the ASCII values of the date string.
+* Supports searching, modifying, and deleting records.
+* Can display the contents of the hash table buckets.
+
+#### Interactive CLI
+
+* Provides interactive menus for the different data structures.
+* Continues running until the user chooses to exit.
+* Handles invalid input to prevent the program from crashing.
+
+## 🚀 How to Run
+
+Make sure you have a C++ compiler installed, such as **GCC/g++**.
+
+Place the CSV dataset in the same directory as the source files/executable:
+
+```text
+effects-of-covid-19-on-trade-at-15-december-2021-provisional.csv
+```
+
+Compile the required source file using `g++`.
+
+For example, to compile Part 2:
+
+```bash
 g++ part2.cpp -o part2_app
+```
+
+Then run the program:
+
+```bash
 ./part2_app
+```
+
+On Windows:
+
+```bash
+part2_app.exe
+```
+
+The same procedure can be used to compile and run the programs from Part 1 using their corresponding source files.
